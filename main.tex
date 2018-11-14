@@ -1,0 +1,180 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath,amssymb,latexsym,amsfonts, amsthm}
+\usepackage[fontsize=13pt]{scrextend} % Font size
+% \usepackage{verbatim} % coding
+
+\usepackage[tracking]{microtype} % Font
+\usepackage[sc,osf]{mathpazo} % Font
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+% \usepackage[all]{xy} % diagram
+
+% \usepackage{tikz} % diagram
+% \usepackage{tikz-cd} % diagram
+
+% \usetikzlibrary{arrows}
+% \usetikzlibrary{matrix}
+
+
+\makeatletter
+\renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
+\def\env@cases#1{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace\def\arraystretch{1.2}%
+  \array{@{}#1@{\quad}l@{}}}
+\makeatother
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{2016-11988} % Top left header
+\chead{3341.202 Introduction to Mathematical Analysis} % Top center header
+\rhead{Lee Young Jae} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newtheorem{lemma}{Lemma}
+
+
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+\begin{titlepage}
+\centering
+{\scshape\LARGE Seoul National University \par}
+\vspace{1.5cm}
+{\huge\bfseries Introduction to\\Mathematical Analysis\par}
+\vspace{1cm}
+{\scshape\Large Assignment \# 8\par}
+
+\vspace{1cm}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=70mm]{suho.jpeg}
+\end{figure}
+
+\vspace{1cm}
+
+\arrayrulewidth=1.2pt
+\begin{tabular}{p{2.5cm}p{2cm}}
+\centering
+& \\
+\cline{2-2}
+\vspace{-.73cm}
+My Score? & \\
+\end{tabular}
+
+
+
+\vfill
+\text{2016-11988}
+\vspace{.7cm}\par
+\textsc{\large Lee Young Jae}
+\vspace{.7cm}\par
+{\Large \today\par}
+\end{titlepage}
+
+\setlength{\parindent}{0cm}
+
+
+\begin{enumerate}[font = \Large\bfseries\itshape\space, leftmargin = 3mm, labelsep = 3mm]
+\item
+Consider $f^+$ of $f$. Obviously $f^+$ and $\liminf f^+$ are measurable.
+Since $f = f^+$ a.e. $\liminf \int fd\mu = \liminf \int f^+ d\mu \leq \int \liminf f^+ d\mu$.
+The only left are proving $\int \liminf f^+d\mu = \int \liminf fd\mu$.
+Let $N_i = \{ x : f_i(x) \neq f_i^+(x)\}$ so that $\mu(N_i) = 0$.
+Then, $\{ \liminf f^+ \neq \liminf f\} \subset \bigcup_{i\geq 1} N_i$, and $\mu(\bigcup_{i\geq 1} N_i) = 0$.
+Therefore, $\int \liminf f^+ d\mu = \int \liminf f d\mu$.
+
+\item
+($U(x) = L(x) \Rightarrow $ continuous)\\
+Note that $L_1(x) \leq L_2(x) \leq \cdots \leq L(x) = f(x) = U(x) \leq \cdots \leq U_2(x) \leq U_1(x)$.
+That is, $h_k = U_k - L_k$ pointwisely converges to $0$ and its convergence are monotone.
+By Dini's theorem, $h_k$ converges to $0$ uniformly.
+Now, fix $x_0 \not\in \bigcup_{k\geq 1} P_k$ in the domain and set $\epsilon > 0$, then there exists $N \in \mathbb{N}$ such that
+$|h_n(x_0) - h(x_0)| = |h_n(x_0)| < \epsilon$ whenever $n > N$.
+For any such $n > N$, let $x_0 \in (x_k, x_{k+1})$ and say $\delta = \min \{ x_0 - x_k, x_{k+1} - x_0 \}$.
+Now, $|x_0 - x| < \delta \Rightarrow |f(x_0) - f(x)| \leq U(x_0) - L(x_0) < \epsilon$.
+Hence $f$ is continous at $x_0$.
+
+($U(x) = L(x) \Leftarrow $ continuous)\\
+Fix $x_0 \not\in \bigcup_{k\geq 1} P_k$ and prove that for any $\epsilon > 0, U(x) - L(x) < \epsilon$.
+Let $\delta > 0$ satisfies that $|x - x_0| < \delta \Rightarrow |f(x_0) - f(x)| < \epsilon/2$.
+Since mesh$(P_k) \rightarrow 0$ as $k \rightarrow \infty$, there exists some $x_k, x_{k+1}$ such that $(x_0 - \delta, x_0 + \delta) \subset (x_k, x_{k+1})$.
+For such $k$, $U_k(x) - f(x) < \epsilon < 2$ and $f(x) - L_k(x) < \epsilon < 2$.
+Therefore, $U(x) - L(x) < \epsilon$.
+
+\item
+To show that $\mathcal{M}^\mu$ is a $\sigma$-algebra, we need to show the followings:
+\begin{enumerate}[label=(\roman*)]
+\item
+$\phi, X \in \mathcal{M}^\mu$.\\
+Obvious, since $\mu(\phi) = 0$, $\mathcal{M} \subset \mathcal{M}^\mu$, and $\mathcal{M}$ itself is a $\sigma$-algebra.
+
+\item
+$C \cup \widetilde{N} \in \mathcal{M}^\mu \Rightarrow (C \cup \widetilde{N})^\mathsf{c} \in \mathcal{M}^\mu$.\\
+For convenience, use the notation in the problem.
+From basic set theory, since $\widetilde{N} \subset N$,
+$$
+(C \cup \widetilde{N})^\mathsf{c} = (C \cup N)^c \cup (N - \widetilde{N}).
+$$
+Since $\mathcal{M}$ is $\sigma$-algebra, $C \cup N \in \mathcal{M}$, and $N  - \widetilde{N} \in \mathcal{N}^\mu$ since $\mu(N) = 0$.
+Therefore, $(C \cup \widetilde{N})^\mathsf{c} \in \mathcal{M}^\mu$.
+
+\item
+$C_i \cup \widetilde{N}_i \in \mathcal{M}^\mu \Rightarrow \bigcup_{i\geq 1} (C_i \cup \widetilde{N}_i) \in \mathcal{M}^\mu$.\\
+$\bigcup_{i\geq 1} (C_i \cup \widetilde{N}_i) = \bigcup_{i\geq 1} C_i \cup \bigcup_{i\geq 1} \widetilde{N}_i$.
+$\bigcup_{i\geq 1}C \in \mathcal{M}$ since $\mathcal{M}$ is a $\sigma$-algebra, and $\bigcup_{i\geq 1}\widetilde{N}_i \in \mathcal{N}^\mu$ since $\bigcup_{i\geq 1} \widetilde{N}_i \subset \bigcup_{i\geq 1} N_i$ and $\mu(\bigcup_{i\geq 1} N_i) \leq \sum_{i\geq 1} \mu(N_i) = 0$.
+
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=(\roman*)]
+\item
+In our lecture, we defined that $f$ is measurable if and only if $f^{-1}((a,\infty))$ is measurable for any $a$.
+Fix $a \in \mathbb{N}$ and let $A = f^{-1}((a,\infty))$.
+Let $N = \{ x : f(x) \neq g(x) \}$ and $M^+ = \{ x : f(x) > a, g(x) \leq a\}$, $M^- = \{ x : f(x) \leq a, g(x) > a\}$.
+Then, $g^{-1}((a,\infty)) = (A - M^+) \cup M^- = (A-N) \cup (M^-) \cup (N - M^+)$.
+Since $A - N \in X$ and $M^- \cup (N - M^+) \subset N$, by completion, it is measurable.
+Therefore, $g$ is measurable.
+
+\item
+Since $\mu^*$ is defined as infimum, let $A(\epsilon)_1, A(\epsilon)_2, \cdots$, satisfies $\sum \mu(A(\epsilon)_n) < \epsilon$ and $\bigcup A(\epsilon)_n \supset N$.
+Let $B_n = \bigcup_{i = 1}^n A(\frac{1}{n})_i$ so that $\mu(B_n) < \frac{1}{n}$ and $B_n \in \mathcal{E}$.
+Now, $\lim_{n\rightarrow\infty} d(N, B_n) \leq \lim_{n\rightarrow\infty} \mu^*(N) + \mu^*(B_n) \leq \lim_{n\rightarrow\infty} 0 + \frac{1}{n} = 0$.
+Therefore, $N = \lim_{n\rightarrow\infty} B_n$ and hence $N \in \mathcal{M}_F(\mu)$.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
